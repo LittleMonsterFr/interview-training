@@ -48,9 +48,9 @@ char *compress_string(char *str)
 
     char c = str[0];
     int num = 1;
-    for (size_t index = 1; index < len; index++)
+    for (size_t index = 1; index <= len; index++)
     {
-        if (str[index] == c)
+        if (index < len && str[index] == c)
         {
             num++;
         }
@@ -64,22 +64,12 @@ char *compress_string(char *str)
                 return str;
             }
             memcpy(&res[res_index], num_char, sizeof(char) * num_char_len);
+            free(num_char);
             res_index += num_char_len;
             c = str[index];
             num = 1;
         }
     }
 
-    if (c != '\0' || num != 0)
-    {
-        res[res_index++] = c;
-        char *num_char = int_to_ascii(num);
-        size_t num_char_len = strlen(num_char);
-        if (res_index + num_char_len >= len)
-        {
-            return str;
-        }
-        memcpy(&res[res_index], num_char, sizeof(char) * num_char_len);
-    }
     return res;
 }
