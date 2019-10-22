@@ -11,7 +11,7 @@ int main()
 
     char *res = compress_string((char *) str);
 
-    std::cout << "result is  : " << res << std::endl;
+    std::cout << "result is : " << res << std::endl;
 
     free(res);
 
